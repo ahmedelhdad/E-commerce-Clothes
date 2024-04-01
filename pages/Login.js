@@ -28,7 +28,7 @@ const Login = () => {
         if (userInfo) {
             router.push('/');
         }
-    }, []);
+    }, [ ]);
 
     const formik = useFormik({
         initialValues: {

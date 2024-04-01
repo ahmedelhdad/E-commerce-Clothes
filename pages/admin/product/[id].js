@@ -35,7 +35,7 @@ const PageProduct = ({ params }) => {
     } else if (!userInfo.isAdmin) {
       router.push('/');
     }
-  }, [userInfo])
+  }, [router, userInfo])
   useEffect(() => {
     try 
     {
@@ -54,7 +54,7 @@ const PageProduct = ({ params }) => {
     {
       console.log(err)
     }
-  }, [])
+  }, [params.id, userInfo.token])
 
  
   const ONChangeHandler = (title) => (e) => {

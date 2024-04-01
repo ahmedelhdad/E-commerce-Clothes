@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React from 'react'
-import dynamic from 'next/dynamic';
 import Layout from '../components/Layout'
 import CheckoutWizard from '../components/ckeckoutWizard'
 import { useSelector, useDispatch } from 'react-redux';
@@ -23,7 +22,6 @@ import {
 
 } from '@mui/material';
 import NextLink from 'next/link';
-import Image from 'next/image';
 import axios from 'axios';
 import { CLEAR_ALL } from '../utils/cartSlice'
 const placeorder = () => {
@@ -41,7 +39,7 @@ const placeorder = () => {
     } else if (cartItems.length <= 0) {
       router.push('/')
     }
-  }, [userInfo,shippingAddress,paymentMethod])
+  }, [userInfo, shippingAddress, paymentMethod, cartItems.length, router])
   const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100; // 123.456 => 123.46
   const itemsPrice = round2(
     cartItems.reduce((a, c) => a + c.price * c.amount, 0)
@@ -235,4 +233,4 @@ const placeorder = () => {
   )
 }
 
-export default dynamic(() => Promise.resolve(placeorder), { ssr: false });
+export default placeorder

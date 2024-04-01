@@ -12,10 +12,9 @@ import {
   Button,
   ListItemText,
   TextField,
-  Checkbox
+  
 } from '@mui/material';
 import Layout from '../../../components/Layout'
-import { useQuery } from 'react-query';
 import axios from 'axios';
 import { toast } from "react-toastify";
 import { GET_USER_ID } from '../../../utils/AdminSlice'
@@ -38,7 +37,7 @@ const UserEdit = ({ params }) => {
     } else if (!userInfo.isAdmin) {
       router.push('/');
     }
-  }, [userInfo])
+  }, [router, userInfo])
   useEffect(() => {
     try {
       const getUsersIdAdmin = async () => {
@@ -56,7 +55,7 @@ const UserEdit = ({ params }) => {
     } catch (err) {
       console.log(err)
     }
-  }, [])
+  }, [dispatch, params.id, userInfo.token])
 
   const handleSubmit = async (e) => {
     e.preventDefault()

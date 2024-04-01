@@ -9,7 +9,7 @@ import {middleware} from '../middleware'
 Router.use(middleware);
 
 Router.post(async (req, res) => {
-    const { id, name, email, password } = req.body
+    const {  name, email, password } = req.body
     await db.connect()
     const user = await UserModel.findById(req.user._id)
     user.name = name

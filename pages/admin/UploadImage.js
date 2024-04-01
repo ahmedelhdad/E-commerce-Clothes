@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { Button } from '@mui/material';
+import {  useState } from "react";
 import { MdCloudUpload, MdDelete } from 'react-icons/md'
 import Lottie from "lottie-react";
 import loading from '../../public/animation/loading.json'

@@ -37,7 +37,7 @@ const orderHistory = () => {
     if (!userInfo) {
       router.push('/Login?redirect=/order-history');
     }
-  }, [userInfo])
+  }, [router, userInfo])
 
   React.useEffect(() => {
     const getOrders = async () => {
@@ -56,7 +56,7 @@ const orderHistory = () => {
       }
     }
     getOrders()
-  }, [])
+  }, [userInfo.token])
 
 
 

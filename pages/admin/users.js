@@ -41,7 +41,7 @@ const AdminUsers = () => {
     } else if (!userInfo.isAdmin) {
       router.push('/');
     }
-  }, [userInfo])
+  }, [router, userInfo])
 
   useEffect(() => {
     try {
@@ -58,7 +58,7 @@ const AdminUsers = () => {
     } catch (err) {
       console.log(err)
     }
-  }, [])
+  }, [dispatch, userInfo.token])
 
 
   const deleteHandler = async (id) => {

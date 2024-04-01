@@ -4,7 +4,6 @@ import React from 'react'
 import Layout from '../components/Layout'
 import { useSelector,useDispatch } from 'react-redux';
 import NextLink from 'next/link';
-import Image from 'next/image';
 import {
   Grid,
   TableContainer,

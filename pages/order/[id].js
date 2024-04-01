@@ -4,7 +4,6 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../../components/Layout'
 import NextLink from 'next/link';
-import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import {
     Grid,
@@ -22,7 +21,6 @@ import {
     CircularProgress,
     Button
 } from '@mui/material';
-import { useQuery } from 'react-query';
 import { useSelector,useDispatch } from 'react-redux';
 import axios from 'axios';
 import Lottie from "lottie-react";
@@ -36,7 +34,7 @@ const order = ({ params }) => {
 
     const userInfo = useSelector((state) => state.LOGIN.userInfo)
     const {order} = useSelector((state) => state.CART)
-    const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
+    const [{ isPending }] = usePayPalScriptReducer();
     const [isLoading,setIsLoading] = useState(true)
     const dispatch = useDispatch()
     const router = useRouter()
@@ -64,7 +62,7 @@ const order = ({ params }) => {
             }
         }
         GETOrder()
-    },[])
+    },[dispatch, params.id])
     if (isLoading) {
         return <h1 className=' min-h-[50vh] flex justify-center items-center'>
             <div className='w-40 h-40'>
@@ -118,7 +116,7 @@ const order = ({ params }) => {
 
     function onError(err) {
 
-        console.error("PayPal Checkout onError");
+        console.error(err);
     }
 
     async function deliverOrderHandler() {

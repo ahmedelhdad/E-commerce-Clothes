@@ -23,7 +23,7 @@ const shipping = () => {
         if (!userInfo) {
             router.push('/Login?redirect=/shipping');
         } 
-    }, [userInfo]);
+    }, [router, userInfo]);
 
     const formik = useFormik({
         initialValues: {

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React from 'react';
@@ -18,11 +19,9 @@ import Lottie from "lottie-react";
 import loading from '../../public/animation/loading.json'
 import { useDispatch } from 'react-redux';
 import { CART_ADD_ITEM } from '../../utils/cartSlice'
-export const fetchProducts = () => {
-  return axios.get('http://localhost:3000/api/products')
-}
 import { toast } from "react-toastify";
 import { motion } from 'framer-motion'
+import dynamic from 'next/dynamic';
 
 const productScreen = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -33,7 +32,9 @@ const productScreen = () => {
   const dispatch = useDispatch()
   // eslint-disable-next-line react-hooks/rules-of-hooks
 
-  const { data, isLoading } = useQuery('Products', () => fetchProducts())
+  const { data, isLoading } = useQuery('Products', () => {
+    return axios.get('/api/products')
+  })
   if (isLoading) {
     return <h1 className=' min-h-[50vh] flex justify-center items-center'>
       <div className='w-40 h-40'>
@@ -49,7 +50,7 @@ const productScreen = () => {
 
   const addToCartHandler = async () => {
 
-    const { data } = await axios.get(`http://localhost:3000/api/products/${product._id}`)
+    const { data } = await axios.get(`/api/products/${product._id}`)
     if (data.countInStock <= 0) {
       toast.info('Sorry . Product is out of stock', {
         position: "top-center",
@@ -81,7 +82,6 @@ const productScreen = () => {
             <img
               src={product.image}
               alt={product.name}
-
               layout="responsive"
          />
         </Grid>
@@ -150,6 +150,6 @@ const productScreen = () => {
   )
 }
 
-export default productScreen
 
+export default dynamic(() => Promise.resolve(productScreen), { ssr: false });
 

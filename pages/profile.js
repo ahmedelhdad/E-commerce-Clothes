@@ -4,9 +4,6 @@ import { useRouter } from 'next/router';
 import NextLink from 'next/link';
 import Layout from '../components/Layout'
 import { USER_LIGIN } from '../utils/LoginSlice'
-import dynamic from 'next/dynamic';
-import { CgProfile } from "react-icons/cg";
-
 import {
   Grid,
   List,
@@ -32,7 +29,7 @@ const profile = () => {
     {
       rouer.push('/Login?redirect=/profile')
     }
-  },[userInfo])
+  },[rouer, userInfo])
   const formik = useFormik({
     initialValues: {
       name: userInfo?.name,
@@ -207,4 +204,4 @@ const profile = () => {
 
 
 
-export default dynamic(() => Promise.resolve(profile), { ssr: false });
+export default profile

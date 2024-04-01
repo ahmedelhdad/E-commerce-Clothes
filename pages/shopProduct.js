@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useEffect } from 'react'
 import Layout from '../components/Layout'
@@ -52,7 +53,7 @@ const shopProduct = () => {
     useEffect(() => {
         try {
             const getCate = async () => {
-                const respons = await axios.get('http://localhost:3000/api/products')
+                const respons = await axios.get('/api/products')
 
                 if (respons.data) {
                     setData(await respons.data)
@@ -80,6 +81,7 @@ const shopProduct = () => {
         setBrand(categoryChecked)
     }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const applyFilters = () => {
         let updateList = data
         const categoryChecked = brand.filter((item) => item.checked).map((item) => item.label)
@@ -92,10 +94,10 @@ const shopProduct = () => {
         setList(updateList)
 
     }
-    useEffect(() => { applyFilters() }, [brand, max, min])
+    useEffect(() => { applyFilters() }, [ brand, max, min])
     const addToCartHandler = async (product) => {
 
-        const { data } = await axios.get(`http://localhost:3000/api/products/${product._id}`)
+        const { data } = await axios.get(`/api/products/${product._id}`)
         if (data.countInStock <= 0) {
           toast.info('Sorry . Product is out of stock', {
             position: "top-center",
@@ -108,10 +110,10 @@ const shopProduct = () => {
     return (
         <Layout head='Shop'>
             <div className='grid grid-cols-1 lg:grid-cols-5'>
-                <div className=' border-gray-300 border-b-[1px] bg-gray-100 p-8 shadow-2xl h-96'>
+                <div className=' border-gray-300 border-b-[1px] mt-1 rounded-xl bg-gray-100 p-8 shadow-2xl h-96'>
                     {/* Category        */}
                     <div>
-                        <h1 className='text-3xl   pb-4'>Category</h1>
+                        <h1 className="text-xl text-gray-800 mb-3 uppercase font-bold">Category</h1>
                         <ListInput category={brand} handlerChecked={handlerChecked} />
                     </div>
                     {/* Price  */}

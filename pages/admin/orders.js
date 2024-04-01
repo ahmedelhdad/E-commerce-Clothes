@@ -38,7 +38,7 @@ const Admonorders = () => {
     } else if (!userInfo.isAdmin) {
       router.push('/');
     }
-  }, [userInfo])
+  }, [router, userInfo])
 
 
 
@@ -59,7 +59,7 @@ const Admonorders = () => {
       }
     }
     getorderAdmin()
-  }, [])
+  }, [userInfo.token])
 
 
 

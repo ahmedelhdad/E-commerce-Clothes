@@ -14,7 +14,6 @@ import {
   CardActions,
 } from '@mui/material';
 import Layout from '../../components/Layout'
-import { useQuery } from 'react-query';
 import axios from 'axios';
 import {
   Chart as ChartJS, Tooltip, Legend,
@@ -39,7 +38,7 @@ const dashboard = () => {
     {
       router.push('/');
     }
-  }, [userInfo])
+  }, [router, userInfo])
 
 
 
@@ -60,7 +59,7 @@ const dashboard = () => {
       }
     }
     getDeshboard()
-  }, [])
+  }, [userInfo.token])
 
 
 
