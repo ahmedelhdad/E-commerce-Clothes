@@ -64,7 +64,6 @@ const placeorder = () => {
       );
 
       if (data) {
-        dispatch(CLEAR_ALL());
         router.push(`/order/${data._id}`);
 
       }
