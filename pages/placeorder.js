@@ -65,7 +65,7 @@ const placeorder = () => {
         router.push(`/order/${data._id}`);
         setInterval(() => {
           dispatch(CLEAR_ALL());
-        },500)
+        },1000)
 
       }
     } catch (err) {
