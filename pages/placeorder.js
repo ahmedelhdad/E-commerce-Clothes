@@ -19,7 +19,6 @@ import {
   Card,
   List,
   ListItem,
-
 } from '@mui/material';
 import NextLink from 'next/link';
 import axios from 'axios';
@@ -62,9 +61,7 @@ const placeorder = () => {
       );
 
       if (data) {
-        
         router.push(`/order/${data._id}`);
-
       }
     } catch (err) {
       console.log(err)
