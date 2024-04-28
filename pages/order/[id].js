@@ -45,7 +45,6 @@ const order = ({ params }) => {
             router.push('/Login')
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        
     }, [userInfo])
 
 
