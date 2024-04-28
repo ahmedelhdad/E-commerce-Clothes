@@ -23,8 +23,10 @@ import {
 } from '@mui/material';
 import NextLink from 'next/link';
 import axios from 'axios';
+import { CLEAR_ALL } from '../utils/cartSlice'
 const placeorder = () => {
   const router = useRouter()
+  const dispatch = useDispatch()
   const { shippingAddress, cartItems, paymentMethod } = useSelector((state) => state.CART)
   const userInfo = useSelector((state) => state.LOGIN.userInfo)
   React.useEffect(() => {
@@ -63,6 +65,10 @@ const placeorder = () => {
 
       if (data) {
         router.push(`/order/${data._id}`);
+        const clearItem = () => 
+        {
+          dispatch(CAR_LEALL());
+        }
       }
     } catch (err) {
       console.log(err)
