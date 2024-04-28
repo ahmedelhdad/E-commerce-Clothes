@@ -27,7 +27,7 @@ import Lottie from "lottie-react";
 import loading from '../../public/animation/loading.json'
 import { useRouter } from 'next/router';
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
-import {GET_ORDER} from '../../utils/cartSlice'
+import {GET_ORDER,CLEAR_ALL} from '../../utils/cartSlice'
 import { toast } from "react-toastify";
 
 const order = ({ params }) => {
@@ -39,11 +39,13 @@ const order = ({ params }) => {
     const dispatch = useDispatch()
     const router = useRouter()
     useEffect(() => {
+        dispatch(CLEAR_ALL());
         if (!userInfo) {
 
             router.push('/Login')
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
+        
     }, [userInfo])
 
 
