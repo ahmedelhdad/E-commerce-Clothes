@@ -64,10 +64,9 @@ const placeorder = () => {
       );
 
       if (data) {
+        // dispatch(CLEAR_ALL());
         router.push(`/order/${data._id}`);
-        setInterval(() => {
-          dispatch(CAR_LEALL());
-        },1000000)
+
       }
     } catch (err) {
       console.log(err)
