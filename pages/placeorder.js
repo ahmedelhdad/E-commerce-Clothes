@@ -15,7 +15,7 @@ import {
   TableRow,
   TableCell,
   Link,
-  Button, 
+  Button,
   Card,
   List,
   ListItem,
@@ -23,8 +23,10 @@ import {
 } from '@mui/material';
 import NextLink from 'next/link';
 import axios from 'axios';
+
 const placeorder = () => {
   const router = useRouter()
+
   const { shippingAddress, cartItems, paymentMethod } = useSelector((state) => state.CART)
   const userInfo = useSelector((state) => state.LOGIN.userInfo)
   React.useEffect(() => {
@@ -34,7 +36,9 @@ const placeorder = () => {
       router.push('/Login?redirect=/placeorder');
     } else if (!paymentMethod) {
       router.push('/payment?redirect=/placeorder');
-    } 
+    } else if (cartItems.length <= 0) {
+      router.push('/')
+    }
   }, [userInfo, shippingAddress, paymentMethod, cartItems.length, router])
   const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100; // 123.456 => 123.46
   const itemsPrice = round2(
@@ -60,8 +64,8 @@ const placeorder = () => {
       );
 
       if (data) {
+
         router.push(`/order/${data._id}`);
-   
 
       }
     } catch (err) {
