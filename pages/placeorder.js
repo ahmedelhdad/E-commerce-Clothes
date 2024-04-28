@@ -23,10 +23,8 @@ import {
 } from '@mui/material';
 import NextLink from 'next/link';
 import axios from 'axios';
-
 const placeorder = () => {
   const router = useRouter()
-
   const { shippingAddress, cartItems, paymentMethod } = useSelector((state) => state.CART)
   const userInfo = useSelector((state) => state.LOGIN.userInfo)
   React.useEffect(() => {
@@ -64,7 +62,7 @@ const placeorder = () => {
       );
 
       if (data) {
-
+        
         router.push(`/order/${data._id}`);
 
       }
