@@ -36,9 +36,7 @@ const placeorder = () => {
       router.push('/Login?redirect=/placeorder');
     } else if (!paymentMethod) {
       router.push('/payment?redirect=/placeorder');
-    } else if (cartItems.length <= 0) {
-      router.push('/')
-    }
+    } 
   }, [userInfo, shippingAddress, paymentMethod, cartItems.length, router])
   const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100; // 123.456 => 123.46
   const itemsPrice = round2(
@@ -64,9 +62,11 @@ const placeorder = () => {
       );
 
       if (data) {
-        dispatch(CLEAR_ALL());
+       
         router.push(`/order/${data._id}`);
-
+        setIntervel(() => {
+           dispatch(CLEAR_ALL());
+        },500)
       }
     } catch (err) {
       console.log(err)
